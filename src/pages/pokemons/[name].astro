@@ -20,7 +20,7 @@ export const getStaticPaths = ( async() => {
 const { name } = Astro.params;
 const { url } = Astro.props;
 
-const id = url.split('/').at(-1); 
+const id = url.split('/').at(-2); 
 const audioSrc = `https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/${id}.ogg`;
 ---
 
@@ -29,12 +29,14 @@ const audioSrc = `https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pok
 <MainLayout title="Algun Pokemon">
 
     <section class="mt-10 mx-10 flex flex-col justify-center items-center">
+        <a href="/">Regresar</a>
 
         <div>
             <h1 class="text-5xl capitalize">{ name }</h1>
         </div>
 
-        <PokemonCard name={ name } url={ url } />
+
+        <PokemonCard name={ name } url={ url } isBig={ true } />
 
         <audio controls class="mt-5">
             <source src={ audioSrc } type="audio/ogg">
