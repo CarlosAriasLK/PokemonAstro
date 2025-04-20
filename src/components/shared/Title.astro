@@ -1,9 +1,20 @@
 ---
 
+interface Props {
+    isBig: Boolean,
+}
+
+const { isBig = false } = Astro.props;
 ---
 
-<h1 class="text-5xl font-bold">
+<h1 class="text-5xl font-bold capitalize">
     <slot />
 </h1>
 
-<div class="border-b-2 border-blue-500 mt-3"></div>
+<div 
+    class:list={[
+        {
+            "border-b-2 border-blue-500 mt-3": isBig === false
+        }
+    ]}
+/>
