@@ -3,19 +3,27 @@ import { Counter } from "@components/Counter";
 import Title from "@components/shared/Title.astro";
 import MainLayout from "@layouts/MainLayout.astro";
 
+const counterValue = 20;
 
 ---
 
 <MainLayout title="Favoritos">
     <Title isBig={false}>Islas</Title>
 
-
     <div style={{
-        height: '2000px',
-        border: '1px solid black'
+        height: '1000px',
+        border: '1px solid black',
+        margin: '10px 0 10px 0'
     }}></div>
 
-    <Counter client:visible />
+    <Counter 
+        transition:persist="counter"
+        transition:persist-props
+        client:visible 
+        initialValue={ counterValue } 
+    >
+        <Title>Counter Island</Title>
+    </Counter>
 
 
 </MainLayout>
