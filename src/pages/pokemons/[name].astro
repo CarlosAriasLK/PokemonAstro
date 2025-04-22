@@ -1,4 +1,5 @@
 ---
+// Se ejecuta en tiempo de construccion
 import type { GetStaticPaths } from "astro";
 import type { PokemonListResponse } from "@interfaces/pokemon-list.response";
 
@@ -107,6 +108,14 @@ const imageSrc = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprit
         
         const heartOuline = btnFavorite.querySelector('[data-outline]') as HTMLElement;
         const heartFull = btnFavorite.querySelector('[data-full]') as HTMLElement;
+        const isFavorite = favoritePokemons.some( fav => fav.name === name);
+
+
+        if ( isFavorite ){
+            heartOuline.classList.add('hidden');
+            heartFull.classList.remove('hidden');
+        }
+
 
         const toggleFavorite = () => {
             const isFavorite = favoritePokemons.some( fav => fav.name === name);
@@ -130,10 +139,8 @@ const imageSrc = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprit
             heartFull.classList.toggle('hidden');
 
             toggleFavorite();
-
         })
     }
-
 
     document.addEventListener('astro:page-load', handlePageLoad );
 </script>
